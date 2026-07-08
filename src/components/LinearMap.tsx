@@ -15,6 +15,8 @@ interface LinearMapProps {
     sourceType: string;
   } | null;
   onHighlightRegion: (start: number, end: number, label: string, color: string, sourceType: any) => void;
+  minOrfLength?: number;
+  setMinOrfLength?: (val: number) => void;
 }
 
 export const LinearMap: React.FC<LinearMapProps> = ({
@@ -24,6 +26,8 @@ export const LinearMap: React.FC<LinearMapProps> = ({
   motifMatches,
   highlightedRegion,
   onHighlightRegion,
+  minOrfLength = 30,
+  setMinOrfLength,
 }) => {
   const [hoveredItem, setHoveredItem] = useState<{
     name: string;
@@ -105,12 +109,38 @@ export const LinearMap: React.FC<LinearMapProps> = ({
   }
 
   return (
-    <div id="linear-map-card" className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 flex flex-col gap-4 relative">
-      <div>
-        <h3 className="text-base font-bold text-slate-800">Carte Linéaire Interactive de la Séquence</h3>
-        <p className="text-xs text-slate-500 mt-0.5">
-          Cartographie globale des ORFs (vert = direct, jaune = complémentaire) et des motifs détectés. Survolez pour voir les infos, cliquez pour localiser.
-        </p>
+    <div id="linear-map-card" className="bg-white border border-slate-200 rounded-2xl shadow-xs p-6 flex flex-col gap-4 relative">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">
+            GENOMIC CARTOGRAPHY
+          </span>
+          <h3 className="text-xs md:text-sm font-extrabold text-slate-800 flex items-center gap-1.5 uppercase mt-0.5">
+            🌐 CARTE LINÉAIRE DU GÉNOME (INTERACTIVE)
+          </h3>
+          <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+            Représentation schématique à l'échelle. Cliquez sur un élément pour localiser sa séquence exacte.
+          </p>
+        </div>
+
+        {setMinOrfLength && (
+          <div className="flex items-center gap-2 bg-slate-50 border border-slate-100 rounded-lg px-3 py-1.5 self-start md:self-auto">
+            <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">
+              SEUIL ORF :
+            </span>
+            <input
+              type="number"
+              min={10}
+              max={200}
+              value={minOrfLength}
+              onChange={(e) => setMinOrfLength(Math.max(10, parseInt(e.target.value) || 30))}
+              className="w-14 text-center border border-slate-200 rounded py-0.5 px-1 font-mono font-bold text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            <span className="text-[10px] font-extrabold text-slate-500 uppercase">
+              aa
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="relative border border-slate-50 rounded-xl bg-slate-50/50 p-2 overflow-x-auto">

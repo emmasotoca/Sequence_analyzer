@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { SequenceType, SequenceFormat } from '../types';
 import { BIOLOGICAL_EXAMPLES } from '../data/examples';
-import { parseAndCleanSequence, detectSequenceType } from '../utils/bioUtils';
-import { FileUp, Trash2, HelpCircle, AlertCircle, RefreshCw, FileText } from 'lucide-react';
+import { FileUp, Trash2, CheckCircle2 } from 'lucide-react';
 
 interface SequenceInputProps {
   rawInput: string;
@@ -73,160 +72,182 @@ export const SequenceInput: React.FC<SequenceInputProps> = ({
     }
   };
 
-  // Badges for sequence type representation
-  const getTypeBadge = () => {
-    switch (detectedType) {
-      case 'DNA':
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            ADN double brin / simple brin
-          </span>
-        );
-      case 'RNA':
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-            ARN (Uraciles détectés)
-          </span>
-        );
-      case 'PROTEIN':
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-            Protéine (Acides Aminés)
-          </span>
-        );
-      case 'UNKNOWN':
-      default:
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-50 text-slate-500 border border-slate-200">
-            Type non détecté
-          </span>
-        );
-    }
-  };
+  // Helper to find currently selected example details
+  const activeExample = BIOLOGICAL_EXAMPLES.find(
+    (ex) => rawInput.includes(ex.sequence) || ex.sequence.includes(sequence)
+  );
+
+  const displayTitle = activeExample ? activeExample.name : (header ? header : "Séquence personnalisée");
+  const displayDesc = activeExample ? activeExample.description : "Séquence brute importée ou saisie manuellement par l'utilisateur.";
 
   return (
-    <div id="sequence-input-container" className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 flex flex-col gap-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-bold text-slate-800 tracking-tight font-sans">
-            Saisie de Séquence Biologique
-          </h2>
-          <p className="text-xs text-slate-500 mt-1">
-            Collez votre séquence au format brut ou FASTA, ou chargez un fichier d'analyse.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {BIOLOGICAL_EXAMPLES.map((ex) => (
-            <button
-              id={`btn-load-${ex.id}`}
-              key={ex.id}
-              onClick={() => loadExample(ex.id)}
-              className="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-blue-50/50 hover:text-blue-700 border border-slate-200 hover:border-blue-200 rounded-lg transition-all cursor-pointer"
-              title={ex.description}
-            >
-              {ex.name.split(' : ')[1] || ex.name}
-            </button>
-          ))}
+    <div id="sequence-input-container" className="bg-white border border-slate-200 rounded-2xl shadow-xs p-6 flex flex-col gap-6">
+      
+      {/* 1. Header Section */}
+      <div>
+        <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wider block">
+          FORMAT FASTA, RAW OU FICHIERS TEXTE EXTÉRIEURS
+        </span>
+        <h2 className="text-sm font-extrabold text-slate-800 tracking-tight font-sans uppercase mt-0.5">
+          SAISIE DE LA SÉQUENCE BIOLOGIQUE
+        </h2>
+      </div>
+
+      {/* 2. Samples Section */}
+      <div className="flex flex-col gap-3">
+        <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          ÉCHANTILLONS DE SÉQUENCES RÉELLES
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {BIOLOGICAL_EXAMPLES.map((ex) => {
+            const isSelected = activeExample?.id === ex.id;
+            return (
+              <div
+                id={`btn-load-${ex.id}`}
+                key={ex.id}
+                onClick={() => loadExample(ex.id)}
+                className={`p-4 border rounded-xl transition-colors cursor-pointer flex flex-col gap-1 ${
+                  isSelected
+                    ? 'border-blue-500 bg-blue-50/10'
+                    : 'border-slate-200 bg-slate-50/50 hover:bg-slate-50'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-slate-700 truncate">
+                    {ex.name}
+                  </span>
+                  <span
+                    className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded shrink-0 ${
+                      ex.type === 'DNA'
+                        ? 'bg-blue-100 text-blue-700'
+                        : ex.type === 'RNA'
+                        ? 'bg-amber-100 text-amber-700'
+                        : 'bg-emerald-100 text-emerald-700'
+                    }`}
+                  >
+                    {ex.type}
+                  </span>
+                </div>
+                <p className="text-[10px] text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                  {ex.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <div
-        className={`relative flex flex-col gap-2 rounded-xl border-2 border-dashed p-1 transition-all ${
-          dragActive ? 'border-blue-500 bg-blue-50/50' : 'border-slate-200 hover:border-slate-300'
-        }`}
-        onDragEnter={handleDrag}
-        onDragOver={handleDrag}
-        onDragLeave={handleDrag}
-        onDrop={handleDrop}
-      >
-        <textarea
-          id="sequence-textarea-input"
-          value={rawInput}
-          onChange={(e) => setRawInput(e.target.value)}
-          placeholder=">Exemple_FASTA | Collez votre séquence d'ADN, ARN ou Protéine ici..."
-          className="w-full min-h-[180px] p-4 text-sm font-mono text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 resize-y rounded-lg bg-slate-50/30"
-        />
-
-        {/* Drag Over Overlay */}
-        {dragActive && (
-          <div className="absolute inset-0 bg-blue-50/90 flex flex-col items-center justify-center gap-2 rounded-xl pointer-events-none">
-            <FileUp className="w-10 h-10 text-blue-600 animate-bounce" />
-            <p className="text-sm font-semibold text-blue-800">Déposez votre fichier biologique ici</p>
-            <p className="text-xs text-blue-600">Prend en charge .txt, .fasta, .fa</p>
-          </div>
-        )}
-      </div>
-
-      {/* Control Buttons & Info Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-3">
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept=".txt,.fasta,.fa"
-            className="hidden"
+      {/* 3. Text Editor Section */}
+      <div className="flex flex-col gap-3">
+        <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          ÉDITEUR DE SÉQUENCE BRUTE (FASTA / RAW)
+        </h3>
+        <div
+          className={`relative flex flex-col rounded-xl border-2 border-dashed p-1 transition-all ${
+            dragActive ? 'border-blue-500 bg-blue-50/50' : 'border-slate-200 hover:border-slate-300'
+          }`}
+          onDragEnter={handleDrag}
+          onDragOver={handleDrag}
+          onDragLeave={handleDrag}
+          onDrop={handleDrop}
+        >
+          <textarea
+            id="sequence-textarea-input"
+            value={rawInput}
+            onChange={(e) => setRawInput(e.target.value)}
+            placeholder=">Exemple_FASTA | Collez votre séquence d'ADN, ARN ou Protéine ici..."
+            className="w-full min-h-[180px] p-4 pb-12 text-xs font-mono text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 border border-slate-200 rounded-xl bg-white resize-y"
           />
-          <button
-            id="btn-upload-file"
-            onClick={() => fileInputRef.current?.click()}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-blue-700 bg-blue-50/60 hover:bg-blue-100/80 border border-blue-100 rounded-xl transition-all shadow-xs cursor-pointer"
-          >
-            <FileUp className="w-4 h-4 text-blue-600" />
-            Importer un fichier
-          </button>
-          
-          {sequence && (
+
+          {/* Delete Clear button overlay in bottom right */}
+          {rawInput && (
             <button
               id="btn-clear-sequence"
               onClick={onClear}
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-100 rounded-xl transition-all cursor-pointer"
+              className="absolute right-4 bottom-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-extrabold px-3 py-1.5 rounded-lg text-[10px] tracking-wider transition-all cursor-pointer shadow-xs uppercase"
             >
-              <Trash2 className="w-4 h-4" />
-              Effacer
+              EFFACER
             </button>
+          )}
+
+          {/* Drag Over Overlay */}
+          {dragActive && (
+            <div className="absolute inset-0 bg-blue-50/90 flex flex-col items-center justify-center gap-2 rounded-xl pointer-events-none">
+              <FileUp className="w-10 h-10 text-blue-600 animate-bounce" />
+              <p className="text-sm font-semibold text-blue-800">Déposez votre fichier biologique ici</p>
+              <p className="text-xs text-blue-600">Prend en charge .txt, .fasta, .fa</p>
+            </div>
           )}
         </div>
 
-        {sequence && (
-          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100">
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-slate-500">Format :</span>
-              <span className="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-mono font-bold text-[10px]">
-                {format}
-              </span>
-            </div>
-            {format === 'FASTA' && header && (
-              <div className="flex items-center gap-1.5 max-w-[200px] truncate" title={header}>
-                <span className="font-semibold text-slate-500">En-tête :</span>
-                <span className="text-slate-700 font-mono italic">{header}</span>
-              </div>
-            )}
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-slate-500">Longueur nette :</span>
-              <span className="font-bold text-slate-800 font-mono">{sequence.length.toLocaleString()} bp/aa</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-slate-500">Molécule :</span>
-              {getTypeBadge()}
-            </div>
+        {/* 4. Import & Status Row */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mt-1">
+          <div className="flex flex-wrap items-center gap-3">
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".txt,.fasta,.fa"
+              className="hidden"
+            />
+            <button
+              id="btn-upload-file"
+              onClick={() => fileInputRef.current?.click()}
+              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-xs uppercase"
+            >
+              <FileUp className="w-4 h-4" />
+              IMPORTER FICHIER
+            </button>
+            <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider">
+              FASTA, TXT, SEQ
+            </span>
           </div>
-        )}
+
+          {sequence && (
+            <div className="text-xs font-bold text-emerald-600 flex items-center gap-1 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-xl">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              SÉQUENCE CHARGÉE
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Real-time sequence validity / warnings */}
-      {sequence && detectedType === 'UNKNOWN' && (
-        <div className="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-800 text-xs">
-          <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-bold">Attention : </span>
-            La séquence entrée contient beaucoup de caractères non standards ou invalides. L'analyse peut donner des résultats erronés ou incomplets. Assurez-vous d'utiliser des bases nucléiques standards (A, C, G, T, U) ou des acides aminés (A-Z).
+      {/* 5. Loaded Sequence Summary Block */}
+      {sequence && (
+        <div className="p-4 border border-slate-200 rounded-xl bg-blue-50/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex flex-col gap-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-bold text-slate-800 truncate max-w-md">
+                {displayTitle}
+              </span>
+              <span
+                className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase shrink-0 ${
+                  detectedType === 'DNA'
+                    ? 'bg-blue-600 text-white'
+                    : detectedType === 'RNA'
+                    ? 'bg-amber-500 text-white'
+                    : 'bg-emerald-600 text-white'
+                }`}
+              >
+                {detectedType === 'DNA' ? 'ADN' : detectedType === 'RNA' ? 'ARN' : 'Protéine'}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-500 leading-normal line-clamp-2">
+              {displayDesc}
+            </p>
+          </div>
+
+          <div className="flex flex-col items-start md:items-end shrink-0">
+            <span className="text-[9px] font-extrabold text-slate-400 tracking-wider uppercase">
+              LONGUEUR
+            </span>
+            <span className="text-sm font-extrabold text-slate-800 font-mono mt-0.5">
+              {sequence.length.toLocaleString()} {detectedType === 'PROTEIN' ? 'aa' : 'pb'}
+            </span>
           </div>
         </div>
       )}
+
     </div>
   );
 };
