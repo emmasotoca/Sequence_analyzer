@@ -66,28 +66,28 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
       {/* 1. Header Area - Bento Style */}
       <header className="bg-white border-b border-slate-200 py-3.5 px-6 shadow-sm shrink-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-sm shadow-indigo-100 animate-pulse">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold shadow-sm shadow-blue-100 animate-pulse">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
             </div>
             <div>
               <h1 className="text-lg md:text-xl font-bold tracking-tight font-display text-slate-800 flex items-center gap-2">
-                BioLab <span className="text-indigo-600">Analyzer</span> <span className="text-[10px] bg-indigo-50 text-indigo-600 font-mono px-2 py-0.5 rounded-full border border-indigo-100 font-semibold uppercase">Client-Side</span>
+                BioLab <span className="text-blue-600">Analyzer</span> <span className="text-[10px] bg-blue-50 text-blue-600 font-mono px-2 py-0.5 rounded-full border border-blue-100 font-semibold uppercase">Client-Side</span>
               </h1>
               <p className="text-xs text-slate-500 font-sans mt-0.5">
-                Plateforme autonome d'analyse de séquences nucléotidiques et peptidiques • Prêt pour GitHub Pages
+                Plateforme d'analyse par <span className="font-semibold text-slate-700">Emma Sotoca</span> • Prêt pour GitHub Pages
               </p>
             </div>
           </div>
           
           <div className="flex items-center gap-3">
-            <span className="hidden lg:flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100 font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-              Calculateur 100% Hors-ligne
+            <span className="flex items-center gap-1.5 text-xs text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100 font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping"></span>
+              Chercheuse : Emma Sotoca
             </span>
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
               <span className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg font-mono border border-slate-200">v1.2.0</span>
@@ -119,7 +119,7 @@ export default function App() {
                 onClick={() => setActiveTab('stats')}
                 className={`flex items-center gap-2 px-5 py-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
                   activeTab === 'stats'
-                    ? 'border-indigo-600 text-indigo-600 bg-indigo-50/10'
+                    ? 'border-blue-600 text-blue-600 bg-blue-50/10'
                     : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
                 }`}
               >
@@ -145,7 +145,7 @@ export default function App() {
                 onClick={() => setActiveTab('motifs')}
                 className={`flex items-center gap-2 px-5 py-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
                   activeTab === 'motifs'
-                    ? 'border-indigo-500 text-indigo-500 bg-indigo-50/10'
+                    ? 'border-blue-500 text-blue-500 bg-blue-50/10'
                     : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
                 }`}
               >
@@ -208,18 +208,18 @@ export default function App() {
         ) : (
           /* Empty State Dashboard Greeting card */
           <div className="flex flex-col items-center justify-center border border-dashed border-slate-200 rounded-2xl bg-white p-12 text-center shadow-xs">
-            <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-indigo-600"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
             </div>
             <h2 className="text-xl font-bold text-slate-800 font-display">Bienvenue sur le BioLab Analyzer !</h2>
             <p className="text-sm text-slate-500 max-w-md mt-2 leading-relaxed">
-              Pour commencer, saisissez une séquence d'acide nucléique (ADN/ARN) ou peptidique brute ou au format FASTA, importez un fichier local, ou chargez l'un de nos exemples pré-chargés.
+              Créé pour <span className="font-bold text-slate-700">Emma Sotoca</span> • Saisissez une séquence d'acide nucléique (ADN/ARN) ou peptidique brute ou au format FASTA, importez un fichier local, ou chargez l'un de nos exemples pré-chargés.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mt-6">
               <button
                 id="btn-quick-gfp"
                 onClick={() => setRawInput(BIOLOGICAL_EXAMPLES[0].sequence)}
-                className="px-4 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all shadow-sm cursor-pointer"
+                className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-sm cursor-pointer"
               >
                 Gène GFP (Fluorescence Verte)
               </button>
@@ -238,7 +238,7 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-900 text-slate-300 rounded-2xl p-5 border border-slate-800 text-xs mt-4">
           <div className="flex flex-col gap-1.5">
             <span className="font-bold text-white flex items-center gap-1.5">
-              <GraduationCap className="w-4 h-4 text-indigo-400" />
+              <GraduationCap className="w-4 h-4 text-blue-400" />
               1. 100% Client-Side
             </span>
             <p className="text-slate-400 leading-normal">
@@ -256,7 +256,7 @@ export default function App() {
           </div>
           <div className="flex flex-col gap-1.5">
             <span className="font-bold text-white flex items-center gap-1.5">
-              <Github className="w-4 h-4 text-indigo-400" />
+              <Github className="w-4 h-4 text-blue-400" />
               3. Déploiement GitHub Pages
             </span>
             <p className="text-slate-400 leading-normal">
@@ -270,7 +270,7 @@ export default function App() {
       {/* 3. Footer area */}
       <footer className="bg-slate-100 border-t border-slate-200 py-6 px-6 text-center text-xs text-slate-500 shrink-0">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans">
-          <p>© 2026 - Outil d'Analyse Bio-informatique pour Laboratoires de Recherche.</p>
+          <p>© 2026 - BioLab Analyzer • Responsable scientifique : Emma Sotoca</p>
           <p className="flex items-center gap-1 justify-center">
             Propulsé par <span className="font-semibold text-slate-700">TypeScript</span> et <span className="font-semibold text-slate-700">Vite React</span>.
           </p>

@@ -234,7 +234,7 @@ export const TranslationOrfFinder: React.FC<TranslationOrfFinderProps> = ({
                           <button
                             id={`btn-select-orf-${orf.id}`}
                             onClick={() => handleSelectOrf(orf)}
-                            className="px-2.5 py-1 text-[11px] font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors cursor-pointer"
+                            className="px-2.5 py-1 text-[11px] font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer"
                           >
                             Sélectionner
                           </button>
@@ -279,7 +279,7 @@ export const TranslationOrfFinder: React.FC<TranslationOrfFinderProps> = ({
                   <button
                     id="btn-copy-orf-dna"
                     onClick={() => handleCopy(selectedOrf.dnaSeq, 'dna')}
-                    className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-indigo-600 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-blue-600 transition-colors cursor-pointer"
                   >
                     {copiedId === 'dna' ? (
                       <>
@@ -304,7 +304,7 @@ export const TranslationOrfFinder: React.FC<TranslationOrfFinderProps> = ({
                   <button
                     id="btn-copy-orf-protein"
                     onClick={() => handleCopy(selectedOrf.proteinSeq, 'prot')}
-                    className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-indigo-600 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-blue-600 transition-colors cursor-pointer"
                   >
                     {copiedId === 'prot' ? (
                       <>
@@ -337,15 +337,15 @@ export const TranslationOrfFinder: React.FC<TranslationOrfFinderProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <input
-              id="input-codon-lookup"
-              type="text"
-              maxLength={3}
-              value={codonInput}
-              onChange={(e) => setCodonInput(e.target.value.toUpperCase())}
-              placeholder="ex: ATG"
-              className="w-20 p-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 text-center font-mono font-bold text-sm tracking-widest text-slate-700"
-            />
+              <input
+                id="input-codon-lookup"
+                type="text"
+                maxLength={3}
+                value={codonInput}
+                onChange={(e) => setCodonInput(e.target.value.toUpperCase())}
+                placeholder="ex: ATG"
+                className="w-20 p-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 text-center font-mono font-bold text-sm tracking-widest text-slate-700"
+              />
             <div className="text-xs text-slate-400">
               Prend en charge T ou U
             </div>
@@ -355,7 +355,7 @@ export const TranslationOrfFinder: React.FC<TranslationOrfFinderProps> = ({
             <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col gap-2 text-xs">
               <div className="flex items-center justify-between border-b border-slate-200/60 pb-1.5">
                 <span className="font-bold text-slate-500">Acide Aminé :</span>
-                <span className="font-mono font-bold text-indigo-600 text-sm">
+                <span className="font-mono font-bold text-blue-600 text-sm">
                   {decodedCodon.full} ({decodedCodon.short} / {decodedCodon.aa})
                 </span>
               </div>

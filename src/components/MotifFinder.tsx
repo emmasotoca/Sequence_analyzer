@@ -177,7 +177,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
       case 'restriction':
         return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">Restriction</span>;
       case 'promoter':
-        return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-55 text-indigo-700 border border-indigo-100">Promoteur</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">Promoteur</span>;
       case 'custom':
       default:
         return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-100">Perso</span>;
@@ -187,7 +187,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
   const getMotifMatchColor = (type: string) => {
     switch (type) {
       case 'restriction': return '#EF4444'; // Red
-      case 'promoter': return '#4F46E5'; // Indigo
+      case 'promoter': return '#2563EB'; // Blue
       case 'custom':
       default:
         return '#8B5CF6'; // Purple
@@ -222,7 +222,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
             <button
               id="btn-motifs-all"
               onClick={() => handleToggleAll(true)}
-              className="text-indigo-600 hover:underline cursor-pointer"
+              className="text-blue-600 hover:underline cursor-pointer"
             >
               Tous
             </button>
@@ -258,7 +258,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => {}} // toggled by parent div click
-                    className="mt-0.5 rounded accent-indigo-600 cursor-pointer"
+                    className="mt-0.5 rounded accent-blue-600 cursor-pointer"
                   />
                   <div className="flex flex-col">
                     <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
@@ -305,7 +305,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
                 placeholder="Nom (ex: EcoRI)"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                className="p-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="p-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
               <input
                 id="input-custom-motif-pattern"
@@ -313,7 +313,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
                 placeholder="Séquence (IUPAC)"
                 value={newPattern}
                 onChange={(e) => setNewPattern(e.target.value.toUpperCase())}
-                className="p-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 font-mono"
+                className="p-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
               />
             </div>
             
@@ -334,7 +334,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
                   placeholder="Description courte"
                   value={newDescription}
                   onChange={(e) => setNewDescription(e.target.value)}
-                  className="col-span-2 p-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="col-span-2 p-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
             </div>
 
@@ -355,7 +355,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
             <button
               id="btn-submit-custom-motif"
               type="submit"
-              className="inline-flex items-center justify-center gap-1.5 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               Ajouter à la Bibliothèque
@@ -384,7 +384,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
               placeholder="Filtrer résultats..."
               value={matchSearch}
               onChange={(e) => setMatchSearch(e.target.value)}
-              className="pl-9 pr-3 py-1.5 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 w-44"
+              className="pl-9 pr-3 py-1.5 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 w-44"
             />
           </div>
         </div>
@@ -429,7 +429,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
                         </span>
                       </td>
                       <td className="p-3">
-                        <span className="font-mono font-bold text-indigo-600 bg-indigo-50/60 border border-indigo-100/50 px-2 py-0.5 rounded text-[11px] select-all">
+                        <span className="font-mono font-bold text-blue-600 bg-blue-50/60 border border-blue-100/50 px-2 py-0.5 rounded text-[11px] select-all">
                           {m.sequence}
                         </span>
                       </td>
@@ -443,7 +443,7 @@ export const MotifFinder: React.FC<MotifFinderProps> = ({
                             getMotifMatchColor(m.type),
                             'motif'
                           )}
-                          className="px-2.5 py-1 text-[11px] font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors cursor-pointer"
+                          className="px-2.5 py-1 text-[11px] font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer"
                         >
                           Surligner
                         </button>

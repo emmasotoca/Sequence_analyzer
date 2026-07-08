@@ -70,7 +70,7 @@ export const LinearMap: React.FC<LinearMapProps> = ({
   const getMotifMatchColor = (type: string) => {
     switch (type) {
       case 'restriction': return '#EF4444'; // Red
-      case 'promoter': return '#4F46E5'; // Indigo
+      case 'promoter': return '#2563EB'; // Blue
       case 'custom':
       default:
         return '#8B5CF6'; // Purple
@@ -326,7 +326,7 @@ export const LinearMap: React.FC<LinearMapProps> = ({
             <span className="w-1.5 h-3 bg-red-500"></span> Sites de Restriction
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-0.5 h-3 border-r-4 border-b-4 border-indigo-500"></span> Motifs Promoteurs
+            <span className="w-0.5 h-3 border-r-4 border-b-4 border-blue-500"></span> Motifs Promoteurs
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rotate-45 bg-purple-500"></span> Motifs Personnalisés

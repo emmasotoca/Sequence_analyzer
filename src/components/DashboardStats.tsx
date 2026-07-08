@@ -189,14 +189,14 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
           </div>
         )}
 
-        {/* Dark Indigo Contrast Tip Card */}
-        <div className="bg-indigo-900 border border-indigo-800 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden flex flex-col justify-center">
-          <div className="absolute -right-6 -bottom-6 text-indigo-800/40 opacity-40 select-none pointer-events-none">
+        {/* Dark Blue Contrast Tip Card */}
+        <div className="bg-blue-900 border border-blue-800 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden flex flex-col justify-center">
+          <div className="absolute -right-6 -bottom-6 text-blue-800/40 opacity-40 select-none pointer-events-none">
             <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M20 10c0 4.418-3.582 8-8 8s-8-3.582-8-8c0-4.418 3.582-8 8-8s8 3.582 8 8Z"/></svg>
           </div>
           <div className="relative z-10">
-            <span className="text-[10px] font-bold text-indigo-200 uppercase tracking-wider block mb-1">Ressource Laboratoire</span>
-            <p className="text-[11px] text-indigo-100 leading-relaxed font-sans">
+            <span className="text-[10px] font-bold text-blue-200 uppercase tracking-wider block mb-1">Ressource Laboratoire</span>
+            <p className="text-[11px] text-blue-100 leading-relaxed font-sans">
               {isNucleic
                 ? "Les taux de GC élevés indiquent des zones stables à point de fusion (Tm) élevé. Idéal pour concevoir des amorces PCR robustes."
                 : "La composition détermine le repliement structurel. Les domaines hydrophobes s'enfouissent au cœur des hélices d'acides aminés."
@@ -284,7 +284,7 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
               <div className="flex items-center gap-1.5">
                 <Sliders className="w-3.5 h-3.5 text-slate-500" />
                 <span className="text-xs font-semibold text-slate-600">Fenêtre :</span>
-                <span className="text-xs font-bold text-indigo-600 font-mono w-10 text-right">{localWindowSize} bp</span>
+                <span className="text-xs font-bold text-blue-600 font-mono w-10 text-right">{localWindowSize} bp</span>
               </div>
               <input
                 id="gc-window-slider"
@@ -294,13 +294,13 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
                 step="5"
                 value={localWindowSize}
                 onChange={handleWindowSizeChange}
-                className="w-24 accent-indigo-600 cursor-pointer"
+                className="w-24 accent-blue-600 cursor-pointer"
               />
               <button
                 id="btn-apply-window"
                 onClick={applyWindowSize}
                 disabled={localWindowSize === windowSize}
-                className="px-2.5 py-1 text-[10px] font-bold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:text-slate-400 rounded-lg transition-all cursor-pointer"
+                className="px-2.5 py-1 text-[10px] font-bold text-white bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:text-slate-400 rounded-lg transition-all cursor-pointer"
               >
                 Appliquer
               </button>
@@ -332,11 +332,11 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
                   itemStyle={{ fontSize: '12px' }}
                   formatter={(value: any) => [`${value}%`, 'Taux GC%']}
                 />
-                {/* Indigo reference line for GC profile */}
+                {/* Blue reference line for GC profile */}
                 <Line
                   type="monotone"
                   dataKey="gcPercent"
-                  stroke="#4F46E5"
+                  stroke="#2563EB"
                   strokeWidth={2.5}
                   dot={false}
                   activeDot={{ r: 5 }}

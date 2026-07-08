@@ -130,7 +130,7 @@ export const VisualSequencer: React.FC<VisualSequencerProps> = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
         <div>
           <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-            <CornerDownRight className="w-5 h-5 text-indigo-600" />
+            <CornerDownRight className="w-5 h-5 text-blue-600" />
             Séquenceur Visuel & Explorateur de Bases
           </h3>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -150,13 +150,13 @@ export const VisualSequencer: React.FC<VisualSequencerProps> = ({
                 placeholder="Chercher séquence..."
                 value={seqSearchQuery}
                 onChange={(e) => setSeqSearchQuery(e.target.value)}
-                className="pl-8 pr-2 py-1.5 text-xs border border-slate-200 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 w-36 uppercase font-mono font-semibold"
+                className="pl-8 pr-2 py-1.5 text-xs border border-slate-200 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-36 uppercase font-mono font-semibold"
               />
             </div>
             <button
               id="btn-search-sequencer"
               type="submit"
-              className="px-2.5 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-r-lg transition-colors cursor-pointer"
+              className="px-2.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-r-lg transition-colors cursor-pointer"
             >
               Rechercher
             </button>
@@ -172,7 +172,7 @@ export const VisualSequencer: React.FC<VisualSequencerProps> = ({
                 placeholder="Aller à l'index..."
                 value={jumpIndexInput}
                 onChange={(e) => setJumpIndexInput(e.target.value)}
-                className="pl-8 pr-2 py-1.5 text-xs border border-slate-200 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 w-28 font-mono"
+                className="pl-8 pr-2 py-1.5 text-xs border border-slate-200 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-28 font-mono"
               />
             </div>
             <button
@@ -193,7 +193,7 @@ export const VisualSequencer: React.FC<VisualSequencerProps> = ({
             <span className="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
             <span className="font-semibold text-slate-700">
               {highlightedRegion ? (
-                <>Surlignage actif : <span className="font-mono text-indigo-600 font-bold">{highlightedRegion.label}</span> (Coordonnées : {highlightedRegion.start} à {highlightedRegion.end})</>
+                <>Surlignage actif : <span className="font-mono text-blue-600 font-bold">{highlightedRegion.label}</span> (Coordonnées : {highlightedRegion.start} à {highlightedRegion.end})</>
               ) : (
                 <>Séquence recherchée trouvée aux positions <span className="font-mono text-emerald-600 font-bold">{localSearchHighlight?.start} à {localSearchHighlight?.end}</span></>
               )}

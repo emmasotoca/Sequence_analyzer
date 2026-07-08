@@ -92,8 +92,8 @@ export const SequenceInput: React.FC<SequenceInputProps> = ({
         );
       case 'PROTEIN':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
             Protéine (Acides Aminés)
           </span>
         );
@@ -124,7 +124,7 @@ export const SequenceInput: React.FC<SequenceInputProps> = ({
               id={`btn-load-${ex.id}`}
               key={ex.id}
               onClick={() => loadExample(ex.id)}
-              className="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-indigo-50/50 hover:text-indigo-700 border border-slate-200 hover:border-indigo-200 rounded-lg transition-all cursor-pointer"
+              className="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-blue-50/50 hover:text-blue-700 border border-slate-200 hover:border-blue-200 rounded-lg transition-all cursor-pointer"
               title={ex.description}
             >
               {ex.name.split(' : ')[1] || ex.name}
@@ -135,7 +135,7 @@ export const SequenceInput: React.FC<SequenceInputProps> = ({
 
       <div
         className={`relative flex flex-col gap-2 rounded-xl border-2 border-dashed p-1 transition-all ${
-          dragActive ? 'border-indigo-500 bg-indigo-50/50' : 'border-slate-200 hover:border-slate-300'
+          dragActive ? 'border-blue-500 bg-blue-50/50' : 'border-slate-200 hover:border-slate-300'
         }`}
         onDragEnter={handleDrag}
         onDragOver={handleDrag}
@@ -147,15 +147,15 @@ export const SequenceInput: React.FC<SequenceInputProps> = ({
           value={rawInput}
           onChange={(e) => setRawInput(e.target.value)}
           placeholder=">Exemple_FASTA | Collez votre séquence d'ADN, ARN ou Protéine ici..."
-          className="w-full min-h-[180px] p-4 text-sm font-mono text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 resize-y rounded-lg bg-slate-50/30"
+          className="w-full min-h-[180px] p-4 text-sm font-mono text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 resize-y rounded-lg bg-slate-50/30"
         />
 
         {/* Drag Over Overlay */}
         {dragActive && (
-          <div className="absolute inset-0 bg-indigo-50/90 flex flex-col items-center justify-center gap-2 rounded-xl pointer-events-none">
-            <FileUp className="w-10 h-10 text-indigo-600 animate-bounce" />
-            <p className="text-sm font-semibold text-indigo-800">Déposez votre fichier biologique ici</p>
-            <p className="text-xs text-indigo-600">Prend en charge .txt, .fasta, .fa</p>
+          <div className="absolute inset-0 bg-blue-50/90 flex flex-col items-center justify-center gap-2 rounded-xl pointer-events-none">
+            <FileUp className="w-10 h-10 text-blue-600 animate-bounce" />
+            <p className="text-sm font-semibold text-blue-800">Déposez votre fichier biologique ici</p>
+            <p className="text-xs text-blue-600">Prend en charge .txt, .fasta, .fa</p>
           </div>
         )}
       </div>
@@ -173,9 +173,9 @@ export const SequenceInput: React.FC<SequenceInputProps> = ({
           <button
             id="btn-upload-file"
             onClick={() => fileInputRef.current?.click()}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-indigo-700 bg-indigo-50/60 hover:bg-indigo-100/80 border border-indigo-100 rounded-xl transition-all shadow-xs cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-blue-700 bg-blue-50/60 hover:bg-blue-100/80 border border-blue-100 rounded-xl transition-all shadow-xs cursor-pointer"
           >
-            <FileUp className="w-4 h-4 text-indigo-600" />
+            <FileUp className="w-4 h-4 text-blue-600" />
             Importer un fichier
           </button>
           
