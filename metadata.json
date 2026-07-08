@@ -1,0 +1,6 @@
+{
+  "name": "Analyseur Bio-informatique",
+  "description": "Outil d'analyse autonome de séquences d'ADN, d'ARN et de protéines avec visualisation d'ORFs, profil GC glissant et recherche de motifs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
